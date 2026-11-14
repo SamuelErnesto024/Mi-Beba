@@ -1,0 +1,466 @@
+:root {
+    --bg-primary: #fdf8fa;
+    --bg-secondary: #f9eef3;
+    --accent-pink: #d87093;
+    --accent-rose: #b84a6f;
+    --accent-gold: #cfa349;
+    --text-dark: #2d1e24;
+    --text-muted: #6e555f;
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #f3e1e9 100%);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Lienzo de pétalos en el fondo */
+#lily-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Lirio decorativo SVG */
+.lily-corner {
+    position: fixed;
+    width: 220px;
+    height: 220px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.85;
+    animation: gentleSway 6s ease-in-out infinite alternate;
+}
+
+.top-left {
+    top: -15px;
+    left: -15px;
+}
+
+@keyframes gentleSway {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(4deg) scale(1.03); }
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    z-index: 3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.subtitle {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+.hero h1 {
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.hero h1 span {
+    font-style: italic;
+    color: var(--accent-rose);
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.btn-lily {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-rose));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 25px rgba(184, 74, 111, 0.3);
+    transition: all 0.4s ease;
+}
+
+.btn-lily:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(184, 74, 111, 0.45);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--accent-pink), transparent);
+    animation: scrollLine 2s infinite;
+}
+
+@keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Sección Carta de Amor */
+.love-letter-section {
+    position: relative;
+    z-index: 3;
+    padding: 5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.glass-card {
+    max-width: 720px;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3.5rem 2.5rem;
+    box-shadow: 0 20px 50px rgba(45, 30, 36, 0.06);
+    text-align: center;
+}
+
+.lily-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.glass-card h2 {
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-rose);
+}
+
+.letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    font-style: italic;
+    min-height: 120px;
+}
+
+.signature {
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--accent-gold);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.signature.visible {
+    opacity: 1;
+}
+
+/* Galería de 15 Fotos y Videos */
+.gallery-section {
+    position: relative;
+    z-index: 3;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.2rem;
+}
+
+/* Tarjeta con efecto 3D */
+.photo-card {
+    background: #fff;
+    padding: 14px 14px 24px 14px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(45, 30, 36, 0.08);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-card:hover {
+    box-shadow: 0 25px 45px rgba(184, 74, 111, 0.2);
+}
+
+.photo-wrapper {
+    width: 100%;
+    height: 320px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: #f5e6ec;
+}
+
+.photo-wrapper img,
+.photo-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.photo-card:hover .photo-wrapper img,
+.photo-card:hover .photo-wrapper video {
+    transform: scale(1.07);
+}
+
+/* Ícono elegante sobre los videos */
+.video-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    color: var(--accent-rose);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+}
+
+.photo-info {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photo-info h3 {
+    font-size: 1.35rem;
+    color: var(--text-dark);
+}
+
+.photo-badge {
+    font-size: 0.75rem;
+    color: var(--accent-rose);
+    background: var(--bg-secondary);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Lightbox Modal */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(25, 15, 20, 0.88);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-lightbox:hover {
+    transform: rotate(90deg);
+    color: var(--accent-pink);
+}
+
+.lightbox-content {
+    background: #fff;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    animation: scaleUp 0.35s ease;
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-img-container {
+    background: #111;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-img-container img,
+.lightbox-img-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lightbox-caption {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.photo-number {
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.lightbox-caption h3 {
+    font-size: 2.1rem;
+    color: var(--accent-rose);
+    margin-bottom: 1rem;
+}
+
+.lightbox-caption p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.lightbox-nav {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.nav-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--accent-pink);
+    background: transparent;
+    color: var(--accent-rose);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--accent-rose);
+    color: #fff;
+}
+
+/* Animaciones de aparición al hacer scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .lightbox-content {
+        grid-template-columns: 1fr;
+    }
+    .lightbox-img-container {
+        height: 320px;
+    }
+}
