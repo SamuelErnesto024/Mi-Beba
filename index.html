@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti, Mi Lirio Favorito</title>
+    <!-- Fuentes elegantes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Lienzo para los pétalos de lirio cayendo -->
+    <canvas id="lily-canvas"></canvas>
+
+    <!-- Decoración SVG de Lirio en la esquina -->
+    <div class="lily-corner top-left">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20,20 C60,10 110,40 130,90 C80,100 30,70 20,20 Z" fill="rgba(255, 228, 236, 0.7)" stroke="#f48fb1" stroke-width="1.5"/>
+            <path d="M20,20 C10,60 40,110 90,130 C100,80 70,30 20,20 Z" fill="rgba(255, 240, 245, 0.8)" stroke="#f48fb1" stroke-width="1.5"/>
+            <path d="M20,20 C70,20 120,60 150,120 C100,120 50,80 20,20 Z" fill="rgba(255, 255, 255, 0.9)" stroke="#e91e63" stroke-width="1"/>
+            <path d="M20,20 Q60,50 85,75" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+            <circle cx="85" cy="75" r="3" fill="#ffb300"/>
+            <path d="M20,20 Q70,40 95,55" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+            <circle cx="95" cy="55" r="3" fill="#ffb300"/>
+        </svg>
+    </div>
+
+    <!-- Sección Principal (Hero) -->
+    <header class="hero">
+        <div class="hero-content fade-in">
+            <span class="subtitle">Un jardín eterno para ti</span>
+            <h1>Eres tan única como un <span>Lirio en Primavera</span></h1>
+            <p class="intro-text">
+                Cada pétalo aquí representa un motivo por el cual te admiro, y cada fotografía y video es un instante donde el mundo se detuvo para verte brillar.
+            </p>
+            <a href="#galeria" class="btn-lily">Explorar tus 15 momentos</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Desliza suavemente</span>
+            <div class="line"></div>
+        </div>
+    </header>
+
+    <!-- Sección Carta Interactiva -->
+    <section class="love-letter-section">
+        <div class="glass-card reveal">
+            <div class="lily-icon">🌸</div>
+            <h2>Para la mujer que ilumina mis días</h2>
+            <p id="typewriter-text" class="letter-body"></p>
+            <div class="signature" id="signature">— Con todo mi amor</div>
+        </div>
+    </section>
+
+    <!-- Galería Alternada: Foto (impar) / Video (par) -->
+    <section id="galeria" class="gallery-section">
+        <div class="section-header reveal">
+            <span class="subtitle">Nuestra Colección</span>
+            <h2>15 Destellos de Ti</h2>
+            <p>Haz clic en cualquier foto o video para verlo en grande y leer lo que siento</p>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+
+            <!-- 1. FOTO -->
+            <div class="photo-card reveal" data-desc="El día en que me di cuenta de que tu sonrisa es mi lugar seguro en el mundo.">
+                <div class="photo-wrapper">
+                    <img src="1.png" alt="Foto 1" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Mi chica graduada</h3>
+                    <span class="photo-badge">#1 · Foto</span>
+                </div>
+            </div>
+
+            <!-- 2. VIDEO -->
+            <div class="photo-card reveal" data-desc="Verte en movimiento y escuchar tu risa es mi escena favorita de la vida.">
+                <div class="photo-wrapper">
+                    <video src="2.mp4" autoplay muted loop playsinline></video>
+                    <span class="video-indicator">▶</span>
+                </div>
+                <div class="photo-info">
+                    <h3>Mi orgullo</h3>
+                    <span class="photo-badge">#2 · Video</span>
+                </div>
+            </div>
+
+            <!-- 3. FOTO -->
+            <div class="photo-card reveal" data-desc="Podría perderme horas enteras mirando cada detalle de tu rostro.">
+                <div class="photo-wrapper">
+                    <img src="3.png" alt="Foto 3" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Sabe que esta buena</h3>
+                    <span class="photo-badge">#3 · Foto</span>
+                </div>
+            </div>
+
+            <!-- 4. VIDEO -->
+            <div class="photo-card reveal" data-desc="Tu risa es la melodía más bonita que he escuchado en mi vida.">
+                <div class="photo-wrapper">
+                    <video src="4.mp4" autoplay muted loop playsinline></video>
+                    <span class="video-indicator">▶</span>
+                </div>
+                <div class="photo-info">
+                    <h3>No falla un outfit</h3>
+                    <span class="photo-badge">#4 · Video</span>
+                </div>
+            </div>
+
+            <!-- 5. FOTO -->
+            <div class="photo-card reveal" data-desc="Como un lirio blanco, tienes una belleza serena que lo transforma todo.">
+                <div class="photo-wrapper">
+                    <img src="5.png" alt="Foto 5" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Elegancia natural</h3>
+                    <span class="photo-badge">#5 · Foto</span>
+                </div>
+            </div>
+
+            <!-- 6. VIDEO -->
+            <div class="photo-card reveal" data-desc="Un recuerdo vivo que guardo como uno de mis mayores tesoros.">
+                <div class="photo-wrapper">
+                    <video src="6.mp4" autoplay muted loop playsinline></video>
+                    <span class="video-indicator">▶</span>
+                </div>
+                <div class="photo-info">
+                    <h3>Instante mágico</h3>
+                    <span class="photo-badge">#6 · Video</span>
+                </div>
+            </div>
+
+            <!-- 7. FOTO -->
+            <div class="photo-card reveal" data-desc="La ternura que transmites hace que cada día a tu lado valga la pena.">
+                <div class="photo-wrapper">
+                    <img src="7.png" alt="Foto 7" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Esa pijamaaaa</h3>
+                    <span class="photo-badge">#7 · Foto</span>
+                </div>
+            </div>
+
+            <!-- 8. VIDEO -->
+            <div class="photo-card reveal" data-desc="Verte brillar así me llena el corazón de orgullo y admiración.">
+                <div class="photo-wrapper">
+                    <video src="8.mp4" autoplay muted loop playsinline></video>
+                    <span class="video-indicator">▶</span>
+                </div>
+                <div class="photo-info">
+                    <h3>Dame un laito'</h3>
+                    <span class="photo-badge">#8 · Video</span>
+                </div>
+            </div>
+
+            <!-- 9. FOTO -->
+            <div class="photo-card reveal" data-desc="A tu lado hasta el silencio se siente lleno de amor.">
+                <div class="photo-wrapper">
+                    <img src="9.png" alt="Foto 9" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Ella en decli</h3>
+                    <span class="photo-badge">#9 · Foto</span>
+                </div>
+            </div>
+
+            <!-- 10. VIDEO -->
+            <div class="photo-card reveal" data-desc="Me enamoro cada día de tus gestos, de tu voz y de tu forma de mirar la vida.">
+                <div class="photo-wrapper">
+                    <video src="10.mp4" autoplay muted loop playsinline></video>
+                    <span class="video-indicator">▶</span>
+                </div>
+                <div class="photo-info">
+                    <h3>Ella al 100</h3>
+                    <span class="photo-badge">#10 · Video</span>
+                </div>
+            </div>
+
+            <!-- 11. FOTO -->
+            <div class="photo-card reveal" data-desc="Desde que llegaste, todo en mi vida floreció.">
+                <div class="photo-wrapper">
+                    <img src="11.png" alt="Foto 11" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Cuerpazo mami'</h3>
+                    <span class="photo-badge">#11 · Foto</span>
+                </div>
+            </div>
+
+            <!-- 12. VIDEO -->
+            <div class="photo-card reveal" data-desc="No necesitas hacer nada extraordinario para dejarme sin palabras.">
+                <div class="photo-wrapper">
+                    <video src="12.mp4" autoplay muted loop playsinline></video>
+                    <span class="video-indicator">▶</span>
+                </div>
+                <div class="photo-info">
+                    <h3>Y to eso e' mío?</h3>
+                    <span class="photo-badge">#12 · Video</span>
+                </div>
+            </div>
+
+            <!-- 13. FOTO -->
+            <div class="photo-card reveal" data-desc="Nuestras locuras y risas compartidas son mi parte favorita del día.">
+                <div class="photo-wrapper">
+                    <img src="13.png" alt="Foto 13" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Admiren</h3>
+                    <span class="photo-badge">#13 · Foto</span>
+                </div>
+            </div>
+
+            <!-- 14. VIDEO -->
+            <div class="photo-card reveal" data-desc="Si volviera a elegir, te elegiría a ti mil veces sin dudarlo.">
+                <div class="photo-wrapper">
+                    <video src="14.mp4" autoplay muted loop playsinline></video>
+                    <span class="video-indicator">▶</span>
+                </div>
+                <div class="photo-info">
+                    <h3>Bellaquita</h3>
+                    <span class="photo-badge">#14 · Video</span>
+                </div>
+            </div>
+
+            <!-- 15. FOTO -->
+            <div class="photo-card reveal" data-desc="Esta foto es solo el comienzo de todos los capítulos que nos faltan vivir.">
+                <div class="photo-wrapper">
+                    <img src="15.png" alt="Foto 15" loading="lazy">
+                </div>
+                <div class="photo-info">
+                    <h3>Siempre bellaca</h3>
+                    <span class="photo-badge">#15 · Foto</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Lightbox (Modal para ver foto o video en grande) -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <div class="lightbox-img-container">
+                <img id="lightbox-img" src="" alt="Recuerdo especial">
+                <video id="lightbox-video" controls playsinline style="display: none;"></video>
+            </div>
+            <div class="lightbox-caption">
+                <span class="photo-number" id="lightbox-number">Recuerdo #1</span>
+                <h3 id="lightbox-title">Título del momento</h3>
+                <p id="lightbox-desc">Descripción romántica de este recuerdo...</p>
+                <div class="lightbox-nav">
+                    <button id="prev-btn" class="nav-btn">&#8592; Anterior</button>
+                    <button id="next-btn" class="nav-btn">Siguiente &#8594;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Hecho con amor, código y lirios especialmente para ti ✨</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
